@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void bag()
+void bag2()
 {
     vector<int> weight = {1,3,4};
     vector<int> value = {15, 20, 30};
@@ -27,9 +27,25 @@ void bag()
     cout << dp[weight.size()-1][bagweight] << endl;
 }
 
+void bag1(){
+    vector<int> weight = {1,3,4};
+    vector<int> value ={15,20,30};
+    int bagweight = 4;
+
+    vector<int> dp(bagweight+1, 0);
+    for(int i = 0; i < weight.size(); i++){
+        for(int j = bagweight; j >= weight[i]; j--){
+            dp[j] = max(dp[j],dp[j-weight[i]] + value[i]);
+        }
+    }
+    
+    cout << dp[bagweight] << endl;
+}
+
 int main()
 {
 
-    bag();
+    bag2();
+    bag1();
     return 0;
 }
